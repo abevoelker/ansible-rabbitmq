@@ -1,4 +1,3 @@
 ---
-- include: git.yml
 - include: python.yml
 - include: iptables-persistent.yml
