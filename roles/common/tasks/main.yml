@@ -1,3 +1,2 @@
 ---
-- include: python.yml
 - include: iptables-persistent.yml
