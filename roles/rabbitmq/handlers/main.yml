@@ -1,0 +1,5 @@
+---
+- name: restart rabbitmq-server
+  service: name=rabbitmq-server state=restarted
+- name: restart iptables-persistent
+  service: name=iptables-persistent state=restarted

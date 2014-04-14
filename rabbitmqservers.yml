@@ -1,0 +1,6 @@
+---
+- hosts: rabbitmqservers
+  sudo: yes
+  roles:
+    - common
+    - rabbitmq

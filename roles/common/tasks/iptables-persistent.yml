@@ -1,0 +1,12 @@
+---
+- name: Prevent the iptables-peristent install dialog
+  shell: echo {{ item }} | debconf-set-selections
+  with_items:
+  - iptables-persistent iptables-persistent/autosave_v4 boolean false
+  - iptables-persistent iptables-persistent/autosave_v6 boolean false
+- name: Install iptables-persistent
+  apt: name=iptables-persistent
+- name: Ensure iptables-persistent is installed
+  apt: pkg=iptables-persistent state=present update_cache=yes cache_valid_time=3600
+  notify:
+    - start iptables-persistent

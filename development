@@ -1,0 +1,5 @@
+[rabbitmqservers]
+10.0.3.10 admin_user=foo admin_password=bar
+
+[all:vars]
+firewall_enabled=False

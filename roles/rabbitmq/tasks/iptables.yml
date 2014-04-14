@@ -1,0 +1,5 @@
+---
+- name: Set IPTables rules
+  template: src=iptables/rules.v4.j2 dest=/etc/iptables/rules.v4
+  notify:
+    - restart iptables-persistent

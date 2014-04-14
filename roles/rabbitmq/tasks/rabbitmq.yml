@@ -1,0 +1,27 @@
+---
+- name: Add RabbitMQ apt source
+  copy: src=rabbitmq.list dest=/etc/apt/sources.list.d/
+- name: Add RabbitMQ's public key
+  apt_key: url=http://www.rabbitmq.com/rabbitmq-signing-key-public.asc state=present
+- name: Ensure RabbitMQ is installed
+  apt: pkg=rabbitmq-server state=present update_cache=yes
+- name: Ensure RabbitMQ is running
+  service: name=rabbitmq-server state=started
+- name: Delete RabbitMQ default "guest" user
+  rabbitmq_user: user=guest state=absent node=rabbit@{{ ansible_hostname }}
+- name: Add RabbitMQ admin user
+  rabbitmq_user: user={{ admin_user }}
+                 password={{ admin_password }}
+                 vhost=/
+                 configure_priv=.*
+                 read_priv=.*
+                 write_priv=.*
+                 state=present
+                 tags=administrator
+                 node=rabbit@{{ ansible_hostname }}
+- name: Symlink RabbitMQ bin path to sbin (dumb workaround for rabbitmq_plugin module)
+  shell: ln -s /usr/lib/rabbitmq/bin /usr/lib/rabbitmq/sbin creates=/usr/lib/rabbitmq/sbin
+- name: Enable RabbitMQ management console
+  rabbitmq_plugin: names=rabbitmq_management state=enabled prefix=/usr/lib/rabbitmq
+  notify:
+    - restart rabbitmq-server

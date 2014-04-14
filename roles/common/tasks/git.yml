@@ -1,0 +1,5 @@
+---
+- name: Add git maintainers PPA
+  apt_repository: repo='ppa:git-core/ppa'
+- name: Ensure git is installed
+  apt: pkg=git state=present update_cache=yes
