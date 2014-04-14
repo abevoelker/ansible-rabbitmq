@@ -10,4 +10,4 @@ private eth0).
 
 Also includes a Vagrant config for development testing using [vagrant-lxc][1].
 
-[1](https://github.com/fgrehm/vagrant-lxc)
+[1]: https://github.com/fgrehm/vagrant-lxc
