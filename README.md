@@ -6,7 +6,7 @@ management console enabled.
 
 Includes an IPTables firewall ready for DigitalOcean use (IPv4, SSH
 port whitelisted on public eth0, ports 5672 and 15672 whitelisted on
-private eth0).
+private eth1).
 
 Also includes a Vagrant config for development testing using [vagrant-lxc][1].
 
